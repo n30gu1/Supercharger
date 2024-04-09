@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B24798652BC4F50900BD911B /* SuperchargerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24798642BC4F50900BD911B /* SuperchargerTests.swift */; };
 		B2EFF4BD2BC02A8700CFA542 /* SuperchargerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EFF4BC2BC02A8700CFA542 /* SuperchargerApp.swift */; };
 		B2EFF4BF2BC02A8700CFA542 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EFF4BE2BC02A8700CFA542 /* ContentView.swift */; };
 		B2EFF4C12BC02A8800CFA542 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2EFF4C02BC02A8800CFA542 /* Assets.xcassets */; };
@@ -14,7 +15,19 @@
 		B2EFF4CC2BC02BF100CFA542 /* ChargingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EFF4CB2BC02BF100CFA542 /* ChargingState.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B24798662BC4F50900BD911B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2EFF4B12BC02A8700CFA542 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B2EFF4B82BC02A8700CFA542;
+			remoteInfo = Supercharger;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		B24798622BC4F50900BD911B /* SuperchargerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperchargerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B24798642BC4F50900BD911B /* SuperchargerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperchargerTests.swift; sourceTree = "<group>"; };
 		B2EFF4B92BC02A8700CFA542 /* Supercharger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Supercharger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2EFF4BC2BC02A8700CFA542 /* SuperchargerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperchargerApp.swift; sourceTree = "<group>"; };
 		B2EFF4BE2BC02A8700CFA542 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -25,6 +38,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B247985F2BC4F50900BD911B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B2EFF4B62BC02A8700CFA542 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -35,10 +55,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B24798632BC4F50900BD911B /* SuperchargerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B24798642BC4F50900BD911B /* SuperchargerTests.swift */,
+			);
+			path = SuperchargerTests;
+			sourceTree = "<group>";
+		};
 		B2EFF4B02BC02A8700CFA542 = {
 			isa = PBXGroup;
 			children = (
 				B2EFF4BB2BC02A8700CFA542 /* Supercharger */,
+				B24798632BC4F50900BD911B /* SuperchargerTests */,
 				B2EFF4BA2BC02A8700CFA542 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				B2EFF4B92BC02A8700CFA542 /* Supercharger.app */,
+				B24798622BC4F50900BD911B /* SuperchargerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,6 +105,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B24798612BC4F50900BD911B /* SuperchargerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B247986A2BC4F50900BD911B /* Build configuration list for PBXNativeTarget "SuperchargerTests" */;
+			buildPhases = (
+				B247985E2BC4F50900BD911B /* Sources */,
+				B247985F2BC4F50900BD911B /* Frameworks */,
+				B24798602BC4F50900BD911B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B24798672BC4F50900BD911B /* PBXTargetDependency */,
+			);
+			name = SuperchargerTests;
+			productName = SuperchargerTests;
+			productReference = B24798622BC4F50900BD911B /* SuperchargerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B2EFF4B82BC02A8700CFA542 /* Supercharger */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B2EFF4C82BC02A8800CFA542 /* Build configuration list for PBXNativeTarget "Supercharger" */;
@@ -102,6 +150,10 @@
 				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
+					B24798612BC4F50900BD911B = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = B2EFF4B82BC02A8700CFA542;
+					};
 					B2EFF4B82BC02A8700CFA542 = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -121,11 +173,19 @@
 			projectRoot = "";
 			targets = (
 				B2EFF4B82BC02A8700CFA542 /* Supercharger */,
+				B24798612BC4F50900BD911B /* SuperchargerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B24798602BC4F50900BD911B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B2EFF4B72BC02A8700CFA542 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -138,6 +198,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B247985E2BC4F50900BD911B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B24798652BC4F50900BD911B /* SuperchargerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B2EFF4B52BC02A8700CFA542 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -150,7 +218,49 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B24798672BC4F50900BD911B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B2EFF4B82BC02A8700CFA542 /* Supercharger */;
+			targetProxy = B24798662BC4F50900BD911B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		B24798682BC4F50900BD911B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 98882K9P37;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.SuperchargerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Supercharger.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Supercharger";
+			};
+			name = Debug;
+		};
+		B24798692BC4F50900BD911B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 98882K9P37;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.n30gu1.SuperchargerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Supercharger.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Supercharger";
+			};
+			name = Release;
+		};
 		B2EFF4C62BC02A8800CFA542 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -326,6 +436,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B247986A2BC4F50900BD911B /* Build configuration list for PBXNativeTarget "SuperchargerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B24798682BC4F50900BD911B /* Debug */,
+				B24798692BC4F50900BD911B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B2EFF4B42BC02A8700CFA542 /* Build configuration list for PBXProject "Supercharger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

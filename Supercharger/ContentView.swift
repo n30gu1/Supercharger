@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State var chargingState = ChargingState()
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     var body: some View {
         ZStack {
             Image("mbp")
@@ -31,13 +33,13 @@ struct ContentView: View {
                             startPoint: .leading,
                             endPoint: .trailing
                         ) :
-                        LinearGradient(
-                            colors: [
-                                .init(red: 0.3, green: CGFloat(Double(chargingState.currentCapacity/20)*0.1), blue: 0),
-                                .init(red: 0.5, green: CGFloat(Double(chargingState.currentCapacity/20)*0.3), blue: 0.0)],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
+                            LinearGradient(
+                                colors: [
+                                    .init(red: 0.3, green: CGFloat(Double(chargingState.currentCapacity/20)*0.1), blue: 0),
+                                    .init(red: 0.5, green: CGFloat(Double(chargingState.currentCapacity/20)*0.3), blue: 0.0)],
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
                     )
                     .frame(width: Double(chargingState.currentCapacity/100)*200)
                 Rectangle()
@@ -96,8 +98,9 @@ struct ContentView: View {
             }
             .padding()
             .frame(width: 800, height: 450)
-            .task {
+            .onReceive(timer) { _ in
                 chargingState.getPowerStatus()
+                chargingState.calculateWattHours()
             }
         }
     }
