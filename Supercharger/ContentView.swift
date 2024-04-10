@@ -13,6 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
+            // TODO: Change the model to a proper one
             Image("mbp")
                 .resizable()
                 .scaledToFit()
@@ -36,13 +37,13 @@ struct ContentView: View {
                         ) :
                             LinearGradient(
                                 colors: [
-                                    .init(red: 0.3, green: CGFloat(Double(chargingState.currentCapacity/20)*0.1), blue: 0),
-                                    .init(red: 0.5, green: CGFloat(Double(chargingState.currentCapacity/20)*0.3), blue: 0.0)],
+                                    .init(red: 0.3, green: CGFloat(Double(chargingState.currentCapacity)/20*0.1), blue: 0),
+                                    .init(red: 0.5, green: CGFloat(Double(chargingState.currentCapacity)/20*0.3), blue: 0.0)],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
                     )
-                    .frame(width: Double(chargingState.currentCapacity/100)*200)
+                    .frame(width: Double(chargingState.currentCapacity)/100*200)
                 Rectangle()
                     .opacity(0.1)
             }
@@ -72,7 +73,11 @@ struct ContentView: View {
                         .frame(width: 0, height: 20)
                     Text("Time Remaining")
                         .font(.system(size: 14))
-                    Text("\(chargingState.timeToFullCharge) min")
+                    Text(
+                        chargingState.timeToFullCharge == -1 ?
+                        "Calculating" :
+                        "\(chargingState.timeToFullCharge) min"
+                    )
                         .font(.system(size: 34))
                         .fontWeight(.medium)
                     Rectangle()
@@ -83,13 +88,13 @@ struct ContentView: View {
                         .fontWeight(.semibold)
                     Spacer()
                     HStack {
-                        Text("\(chargingState.watts.formatted()) W")
+                        Text(String(format: "%.2f W", chargingState.watts))
                             .font(.system(size: 20))
                         Spacer()
-                        Text("275 mi/h")
+                        Text("\(String(format: "%.0f", chargingState.wattHours.truncatingRemainder(dividingBy: 6.46))) hr \(String(format: "%.0f", chargingState.wattHours.remainder(dividingBy: 6.46) * 60)) min")
                             .font(.system(size: 20))
                         Spacer()
-                        Text("+\(chargingState.wattHours.formatted()) Wh")
+                        Text(String(format: "+%.2f Wh", chargingState.wattHours))
                             .font(.system(size: 20))
                     }
                     .frame(width: 320)

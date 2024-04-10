@@ -23,17 +23,10 @@ final class ChargingState {
     
     func getPowerStatus() {
         // Take a snapshot of all the power source info
-        let snapshot                    = IOPSCopyPowerSourcesInfo().takeRetainedValue()
-        let acSnapshot: CFDictionary?   = {
-            if let snapshot = IOPSCopyExternalPowerAdapterDetails() {
-                return snapshot.takeRetainedValue()
-            }
-            
-            return nil
-        }()
+        let snapshot = IOPSCopyPowerSourcesInfo().takeRetainedValue()
         
         // Pull out a list of power sources
-        let sources = IOPSCopyPowerSourcesList(snapshot).takeRetainedValue() as Array
+        let sources  = IOPSCopyPowerSourcesList(snapshot).takeRetainedValue() as Array
         
         // For each power source...
         for ps in sources {
@@ -49,22 +42,30 @@ final class ChargingState {
             }
         }
         
-        let voltage = shell("ioreg -rw0 -c AppleSmartBattery | grep -o -e '\"Voltage\" = [0-9]*'")
+        let voltage     = shell("ioreg -rw0 -c AppleSmartBattery | grep -o -e '\"Voltage\" = [0-9]*'")
             .components(separatedBy: " = ")
             .last!
             .replacingOccurrences(of: "\n", with: "")
         
-        let current = shell("ioreg -rw0 -c AppleSmartBattery | grep -o -e '\"ChargingCurrent\"=[0-9]*'")
+        let current     = shell("ioreg -rw0 -c AppleSmartBattery | grep -o -e '\"ChargingCurrent\"=[0-9]*'")
             .components(separatedBy: "=")
             .last!
             .replacingOccurrences(of: "\n", with: "")
         
-        self.watts = Double(voltage)! * Double(current)! / 1000000
-        self.sumWatts += self.watts
+        self.watts      = Double(voltage)! * Double(current)! / 1000000
+        self.sumWatts   += self.watts
+        self.seconds    += 1
+        
+        #if DEBUG
+        print("Cap: \(self.currentCapacity), Time: \(self.timeToFullCharge), Watts: \(self.watts), Sum Watts: \(self.sumWatts)")
+        #endif
     }
     
     func calculateWattHours() {
-        let hours       = seconds / 3600
-        self.wattHours  = self.sumWatts * Double(hours)
+        self.wattHours  = self.sumWatts / 3600
+        
+        #if DEBUG
+        print("Seconds: \(self.seconds), Watt Hours: \(self.wattHours)")
+        #endif
     }
 }
