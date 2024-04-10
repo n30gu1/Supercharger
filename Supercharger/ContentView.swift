@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var chargingState = ChargingState()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
+    
     var body: some View {
         ZStack {
             Image("mbp")
@@ -28,7 +28,8 @@ struct ContentView: View {
                         chargingState.currentCapacity > 20 ?
                         LinearGradient(
                             colors: [
-                                .init(red: 0, green: 0.4, blue: 0), .green
+                                .init(red: 0, green: 0.4, blue: 0),
+                                .green
                             ],
                             startPoint: .leading,
                             endPoint: .trailing
@@ -71,7 +72,7 @@ struct ContentView: View {
                         .frame(width: 0, height: 20)
                     Text("Time Remaining")
                         .font(.system(size: 14))
-                    Text("35 min")
+                    Text("\(chargingState.timeToFullCharge) min")
                         .font(.system(size: 34))
                         .fontWeight(.medium)
                     Rectangle()
@@ -82,13 +83,13 @@ struct ContentView: View {
                         .fontWeight(.semibold)
                     Spacer()
                     HStack {
-                        Text("66 kW")
+                        Text("\(chargingState.watts.formatted()) W")
                             .font(.system(size: 20))
                         Spacer()
                         Text("275 mi/h")
                             .font(.system(size: 20))
                         Spacer()
-                        Text("+31 kWh")
+                        Text("+\(chargingState.wattHours.formatted()) Wh")
                             .font(.system(size: 20))
                     }
                     .frame(width: 320)

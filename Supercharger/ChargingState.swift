@@ -41,20 +41,26 @@ final class ChargingState {
             let info = IOPSGetPowerSourceDescription(snapshot, ps).takeUnretainedValue() as! [String: AnyObject]
             
             if let cap  = info[kIOPSCurrentCapacityKey] as? Int,
-               let cur  = info[kIOPSCurrentKey] as? Int,
-               let volt = info[kIOPSVoltageKey] as? Int,
                let time = info[kIOPSTimeToFullChargeKey] as? Int {
 //                print(cur)
 //                print(volt)
                 self.currentCapacity    = cap
-                self.watts              = Double(cur) * 0.001 * Double(volt) * 0.001
                 self.timeToFullCharge   = time
             }
-            
-            if let info = acSnapshot as? [String: AnyObject] {
-//                print(info)
-            }
         }
+        
+        let voltage = shell("ioreg -rw0 -c AppleSmartBattery | grep -o -e '\"Voltage\" = [0-9]*'")
+            .components(separatedBy: " = ")
+            .last!
+            .replacingOccurrences(of: "\n", with: "")
+        
+        let current = shell("ioreg -rw0 -c AppleSmartBattery | grep -o -e '\"ChargingCurrent\"=[0-9]*'")
+            .components(separatedBy: "=")
+            .last!
+            .replacingOccurrences(of: "\n", with: "")
+        
+        self.watts = Double(voltage)! * Double(current)! / 1000000
+        self.sumWatts += self.watts
     }
     
     func calculateWattHours() {

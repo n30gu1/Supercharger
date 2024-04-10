@@ -26,4 +26,10 @@ final class SuperchargerTests: XCTestCase {
         print(chargingState.watts)
     }
 
+    func testShell() {
+        print(shell("ioreg -rw0 -c AppleSmartBattery | grep -o -e '\"Voltage\" = [0-9]*'")
+            .components(separatedBy: " = ")
+            .last!
+            .replacingOccurrences(of: "\n", with: ""))
+    }
 }
